@@ -39,6 +39,12 @@ namespace hmat {
 
 
 class IndexSet {
+
+  /// offset of the start of this node's data in indices
+  int offset_;
+  /// length of this node's data in indices
+  int size_;
+
 public:
   IndexSet() : offset_(-1), size_(0) {}
   IndexSet(int offset, int size) : offset_(offset), size_(size) {}
@@ -50,9 +56,13 @@ public:
    */
   inline int size() const { return size_; }
 
+  inline int & size() { return size_; }
+
   /*! \brief Get the offset of first index
    */
   inline int offset() const { return offset_; }
+
+  inline int & offset() { return offset_; }
 
   /*! \brief Return true if this is a subset of o.
 
@@ -87,13 +97,6 @@ public:
     convert << "[" << offset() << ", " << offset()+size()-1 << "]" ;
     return convert.str();
   }
-
-protected:
-  /// offset of the start of this node's data in indices
-  int offset_;
-  /// length of this node's data in indices
-  int size_;
-
 };
 
 /*! \brief Geometric data.
