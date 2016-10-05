@@ -808,9 +808,8 @@ void HMatrix<T>::axpy(T alpha, const FullMatrix<T>* b) {
   } else {
     const FullMatrix<T>* subMat = b->subset(rows(), cols());
 
-    //    if (this->isNull()) {
-    //      full(new FullMatrix<T>( this->rows(), this->cols()) ); // TODO : check this ?!?! isNull() could mean rank()==0 !!
-    //    }
+    if (isNull())
+      full(new FullMatrix<T>(subMat->rows(), subMat->cols())); // TODO : check this ?!?! isNull() could mean rank()==0 !!
     if (isFullMatrix()) {
       full()->axpy(alpha, subMat);
     } else if (isRkMatrix()) {
