@@ -281,7 +281,12 @@ function(hmat_set_compiler_flags _TARGET_NAME)
     endif()
     check_cxx_compiler_flag("/W4" MSVC_COMPILER_WARNING_FLAGS)
     if(MSVC_COMPILER_WARNING_FLAGS)
-        target_compile_options(${_TARGET_NAME} PRIVATE /W4 -wd869,1786,2557,3280)
+        target_compile_options(${_TARGET_NAME} PRIVATE /W4)
+    endif()
+
+    check_cxx_compiler_flag("-wd869,1786,2557,3280" HAVE_INTEL_COMPILER_WARNING_FLAGS)
+    if(HAVE_INTEL_COMPILER_WARNING_FLAGS)
+        target_compile_options(${_TARGET_NAME} PRIVATE "-wd869,1786,2557,3280")
     endif()
 
     # C99 required for complex numbers
