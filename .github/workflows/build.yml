@@ -79,4 +79,4 @@ jobs:
           xcopy /f /y /s bin\libopenblas.dll .
           cmake -LAH -G Ninja -DBUILD_EXAMPLES=ON -DBLAS_LIBRARIES=%cd:\=/%/lib/libopenblas.dll.a -DCBLAS_LIBRARIES=%cd:\=/%/lib/libopenblas.dll.a -DLAPACKE_LIBRARIES=%cd:\=/%/lib/libopenblas.dll.a -DCBLAS_INCLUDE_DIR=%cd:\=/%/include -DCMAKE_INSTALL_PREFIX=%cd:\=/%/install -DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl .
           cmake --build . --target install --parallel 4
-          ctest --output-on-failure -V -E hodlrvsllt
+          ctest --output-on-failure -V
